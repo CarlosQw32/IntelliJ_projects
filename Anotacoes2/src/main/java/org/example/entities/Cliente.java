@@ -29,6 +29,6 @@ public class Cliente {
     @Embedded
     private Telefone telefone;
 
-    private Endereco enderco;
+    //private Endereco enderco;
 }
 
