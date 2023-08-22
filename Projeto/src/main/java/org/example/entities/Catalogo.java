@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,4 +20,8 @@ public class Catalogo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String NomeDoAutor;
     private int NumCopias;
+
+    @ManyToMany
+    @JoinColumn (name = "Id_Livro")
+    private List<Livro>livro;
 }

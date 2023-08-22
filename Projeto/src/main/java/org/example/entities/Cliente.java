@@ -18,4 +18,10 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String Id;
     private String Senha;
+
+    @OneToOne
+    @JoinColumn(name = "Livro_Id")
+    private Livro livro;
+
+
 }

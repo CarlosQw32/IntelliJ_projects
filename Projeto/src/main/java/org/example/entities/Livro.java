@@ -29,6 +29,15 @@ public class Livro {
     @JoinColumn (name= "Funcionarios_Id")
     private Funcionarios funcionarios;
 
+    @ManyToMany
+    @JoinColumn (name = "Catalogo_Id")
+    private List<Catalogo> catalogo;
+
+    @OneToOne
+    @JoinColumn (name = "Clinete_Id")
+    private  Cliente cliente;
+
+
 
 
 
