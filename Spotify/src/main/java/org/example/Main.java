@@ -1,7 +1,12 @@
 package org.example;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
+
+public class Main {public static void main(String[] args) throws Exception {
+    var entityManagerFactory = Persistence.createEntityManagerFactory( "default");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    System.out.println("Teste");
+}
 }
