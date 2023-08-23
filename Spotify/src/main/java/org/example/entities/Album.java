@@ -1,7 +1,6 @@
 package org.example.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +13,9 @@ import lombok.ToString;
 @Entity
 @Table(name = "Album")
 public class Album {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     private int album_id;
     private String album_name;
