@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
+    @Column(name = "track_id", nullable = false)
     private int track_id;
     private String track_name;
     private String track_lenght;
@@ -27,4 +30,6 @@ public class Track {
     private String track_songwriters;
     private String track_released;
 
+    @OneToMany (mappedBy = "track")
+    private List<Purchase> purchases;
 }

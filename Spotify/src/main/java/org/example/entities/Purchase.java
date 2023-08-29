@@ -6,26 +6,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "Artist")
-public class Artist {
+@Table(name = "Purchase")
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "artist_id", nullable = false)
-    private int artist_id;
-    private String artist_name;
-    private String artist_type;
+    private String payment_method;
+    private String date_purchase;
+    private String time_purchase;
 
-    @OneToMany(mappedBy = "artist")
-    private List<Album> album;
+    @ManyToOne
+    @JoinColumn(name = "email")
+    private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name= "track_id")
+    private Track track;
 
 }

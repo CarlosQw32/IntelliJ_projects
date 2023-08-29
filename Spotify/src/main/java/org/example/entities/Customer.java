@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
+    @Column(name = "email", nullable = false)
     private String email;
     private String name;
     private String password;
@@ -24,4 +27,8 @@ public class Customer {
     private double card_information;
     private double ip_address;
     private String device;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Purchase> purchases;
+
 }

@@ -13,19 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "Artist")
-public class Artist {
+@Table(name = "genre")
+public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "artist_id", nullable = false)
-    private int artist_id;
-    private String artist_name;
-    private String artist_type;
+    @Column(name = "genre_Id", nullable = false)
+    private String genre_Id;
+    private String genre_name;
 
-    @OneToMany(mappedBy = "artist")
-    private List<Album> album;
-
+    @OneToMany(mappedBy = "genre")
+    private List<>
 
 }
