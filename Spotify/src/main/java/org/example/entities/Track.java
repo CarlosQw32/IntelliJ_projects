@@ -32,4 +32,10 @@ public class Track {
 
     @OneToMany (mappedBy = "track")
     private List<Purchase> purchases;
+
+    @OneToMany (mappedBy = "track")
+    private List<Genre_Track> genre_tracks;
+
+    @OneToMany (mappedBy = "track")
+    private List<Album_Track> album_tracks;
 }

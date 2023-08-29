@@ -33,4 +33,8 @@ public class Album {
     @ManyToOne
     @JoinColumn(name = "record_Label_Id")
     private Record_Label record_label;
+
+    @OneToMany(mappedBy = "album")
+    private List<Album_Track> album_tracks;
+
 }
