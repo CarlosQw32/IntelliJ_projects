@@ -26,7 +26,7 @@ public class Track_Artist {
     private Artist artist;
 
     @ManyToOne
-    @Column (name = "Featuring_artist_id")
+    @JoinColumn (name = "Featuring_artist_id")
     private Artist Featuring_artist_id;
 
 
