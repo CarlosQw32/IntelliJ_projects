@@ -14,13 +14,15 @@ import lombok.ToString;
 @Table(name = "Track_Artist")
 public class Track_Artist {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @ManyToOne
     @JoinColumn(name = "track_id")
     private Track track;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @ManyToOne
     @JoinColumn (name = "artist_id")
     private Artist artist;
