@@ -20,7 +20,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     @Column(name = "genre_Id", nullable = false)
-    private String genre_Id;
+    private int genre_Id;
     private String genre_name;
 
     @OneToMany(mappedBy = "genre")
