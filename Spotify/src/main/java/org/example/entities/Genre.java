@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 import java.util.List;
 
@@ -14,16 +15,18 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "genre")
-public class Genre {
+public class Genre extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "genre_Id", nullable = false)
-    private int genre_Id;
-    private String genre_name;
 
-    @OneToMany(mappedBy = "genre")
-    private List<Genre_Track> genre_tracks;
+        private String genre_name;
+
+        @ManyToMany(fetch = FetchType.LAZY)
+        @JoinTable(
+                name = "genre_track",
+                joinColumns = @JoinColumn(name = "genre_id"),
+                inverseJoinColumns = @JoinColumn(name="track_id")
+        )
+        private List<Track> tracks;
 
 }
