@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 import java.util.List;
 
@@ -14,27 +15,28 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Album")
-public class Album {
+public class Album extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "album_id", nullable = false)
-    private int album_id;
     private String album_name;
     private String album_type;
     private String album_released;
     private String album_recorded;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    @ManyToOne
-    @JoinColumn(name = "record_Label_Id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "record_label_id")
     private Record_Label record_label;
 
-    @OneToMany(mappedBy = "album")
-    private List<Album_Track> album_tracks;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "album_track",
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name="track_id")
+    )
+    private List<Track> tracks;
 
 }
