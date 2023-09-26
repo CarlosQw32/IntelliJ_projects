@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.valueObjects.CardInformation;
 
 import java.util.List;
 
@@ -16,19 +17,19 @@ import java.util.List;
 @Table(name = "Customer")
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "email", nullable = false)
+    @Id
+    @Column(length = 50)
     private String email;
+
     private String name;
     private String password;
     private int age;
-    private double card_information;
+    @Embedded
+    private CardInformation card_information;
     private double ip_address;
     private String device;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Purchase> purchases;
-
+    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
+    private List<Purchase> purchase;
 }
