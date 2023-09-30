@@ -5,8 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,21 +18,28 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Artist")
-public class Artist {
+public class Artist extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "artist_id", nullable = false)
-    private int artist_id;
     private String artist_name;
     private String artist_type;
 
-    @OneToMany(mappedBy = "artist")
-    private List<Album> album;
+    @OneToMany(mappedBy = "artist", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Track> tracks = new HashSet<>();
 
-    @OneToMany(mappedBy = "artist")
-    private List<Track_Artist> track_artists;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JoinTable(
+            name = "artist_track",
+            joinColumns = @JoinColumn(name = "artist_id"),
+            inverseJoinColumns = @JoinColumn(name = "track_id")
+    )
+    private List<Track> collaborations = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Album> album;
 
 
 

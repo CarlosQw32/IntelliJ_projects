@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,30 +16,47 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Track")
-public class Track {
+public class Track extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(length = 50)
 
-    @Column(name = "track_id", nullable = false)
-    private int track_id;
     private String track_name;
-    private String track_lenght;
-    private double track_size;
-    private double  track_price;
-    private String track_languege;
+    private int track_length;
+    private int track_size;
+    private int track_price;
+    private String track_language;
     private String track_producer;
     private String track_songwriters;
     private String track_released;
 
-    @OneToMany (mappedBy = "track")
-    private List<Purchase> purchases;
+    public Track(String track_name, int track_length, int track_size, int track_price, String track_language, String track_producer, String track_songwriters, String track_released) {
+        this.track_name = track_name;
+        this.track_length = track_length;
+        this.track_size = track_size;
+        this.track_price = track_price;
+        this.track_language = track_language;
+        this.track_producer = track_producer;
+        this.track_songwriters = track_songwriters;
+        this.track_released = track_released;
+    }
 
-    @OneToMany (mappedBy = "track")
-    private List<Genre_Track> genre_tracks;
+    @OneToMany(mappedBy = "track", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Purchase> purchase;
 
+    @ManyToMany(mappedBy = "tracks", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Genre> genres;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
-    @OneToMany (mappedBy = "track")
-    private List<Track_Artist> track_artists;
+    @ManyToMany(mappedBy = "collaborations",fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Artist> colaborations = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "tracks",fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Album> albuns;
 }

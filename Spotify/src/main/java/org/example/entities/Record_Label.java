@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 import java.util.List;
 
@@ -14,16 +15,13 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Record_label")
-public class Record_Label {
+public class Record_Label extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    @Column(name = "record_Label_Id", nullable = false)
-    private double record_Label_Id;
     private String record_label_Name;
     private String website;
 
-    @OneToMany(mappedBy = "record_label")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "album_id")
     private List<Album> album;
 }

@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.enums.PaymentMethodType;
+
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -15,18 +19,20 @@ import lombok.ToString;
 public class Purchase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
+    private UUID id;
 
-    private String payment_method;
-    private String date_purchase;
-    private String time_purchase;
-
-    @ManyToOne
-    @JoinColumn(name = "email")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name= "track_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "track_id")
     private Track track;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentMethodType payment_method;
+    private LocalDate data;
+    private LocalDate tempo;
 
 }
