@@ -16,6 +16,6 @@ public class Main {public static void main(String[] args) throws Exception {
     var sql = "Select * from Genre";
     var querryNative = entityManager.createNativeQuery(jpql, Genre.class);
     var genereNative = querry.getResultList();
-    System.out.println("Teste");
+    System.out.println("Concluído");
 }
 }
