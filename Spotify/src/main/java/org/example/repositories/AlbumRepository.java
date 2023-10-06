@@ -22,11 +22,12 @@ public class AlbumRepository {
         /*return  entityManager.createQuery(jpql, Album.class).getResultList();*/
     }
 
-    public Optional<Album> GetAlbumById(int id){
-        var jpql = "SELECT a FROM Album WHERE a.id :id";
+    public Optional<Album> GetAlbumById(long id){
+       /* var jpql = "SELECT a FROM Album WHERE a.id :id";
         var query = entityManager.createQuery(jpql, Album.class);
         query.setParameter("id", id);
-        return Optional.ofNullable(query.getSingleResult());
+        //return Optional.ofNullable(query.getSingleResult());*/
+        return Optional.ofNullable(entityManager.find(Album.class,id));
     }
 
     public  void InsertAlbum(Album album){
@@ -57,7 +58,7 @@ public class AlbumRepository {
         }
     }
 
-    public  void deleteAlbum(int id){
+    public  void deleteAlbum(long id){
         try{
             var album = GetAlbumById(id);
             if(album.isPresent()) {
