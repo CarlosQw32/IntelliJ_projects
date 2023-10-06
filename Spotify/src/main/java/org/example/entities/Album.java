@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.example.entities.base.BaseEntity;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -17,11 +18,11 @@ import java.util.List;
 @Table(name = "Album")
 public class Album extends BaseEntity {
 
-
+    @Column(nullable = false)
     private String album_name;
     private String album_type;
-    private String album_released;
-    private String album_recorded;
+    private Date album_released;
+    private Date album_recorded;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id")
