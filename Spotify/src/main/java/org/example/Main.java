@@ -6,7 +6,7 @@ import org.example.entities.Genre;
 import org.example.repositories.AlbumRepository;
 
 public class Main {public static void main(String[] args) throws Exception {
-    var entityManagerFactory = Persistence.createEntityManagerFactory( "default");
+    var entityManagerFactory = Persistence.createEntityManagerFactory( "oracle");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     var albumRepository = new AlbumRepository(entityManager);

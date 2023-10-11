@@ -6,19 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @ToString
-@Table(name = "Order")
+@Entity
+@Table(name = "Order_Pedido")
 public class Order {
 
     @Id
     private int id;
 
-    @OneToMany(mappedBy = "Order_id", fetch = FetchType.LAZY)
     private int customer_id;
+
+
     private int status_code_id;
+
     private String customer_comments;
 }
