@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,13 +17,16 @@ import lombok.ToString;
 public class OrderItem {
 
     @Id
+    //@GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
 
-    private int order_id;
     private int product_id;
     private int quantity;
     private float price;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 
 }

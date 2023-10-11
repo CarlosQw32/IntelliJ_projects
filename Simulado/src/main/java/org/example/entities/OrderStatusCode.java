@@ -17,11 +17,9 @@ public class OrderStatusCode {
     @Id
     private int id;
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_code_id")*/
-    private String status_code;
-
     private String description;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_code_id")
+    private Order order;
 }

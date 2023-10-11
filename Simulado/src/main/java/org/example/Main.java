@@ -12,9 +12,9 @@ public class Main {
 
         //var orderRepository = new OrederRepository(entityManager);
 
-        var jpql = "Select * from Order_pedido ";
+        /*var jpql = "Select * from Order_pedido ";
         var querry = entityManager.createNativeQuery(jpql, Order.class);
-        var Order = querry.getResultList();
+        var Order = querry.getResultList();*/
 
 
     }
