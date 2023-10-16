@@ -26,7 +26,7 @@ public class Order {
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
-    @ManyToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderStatusCode> orderStatusCodes;
 
 }
