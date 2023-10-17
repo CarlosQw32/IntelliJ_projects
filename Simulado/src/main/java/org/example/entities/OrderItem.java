@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 import java.util.List;
 
@@ -14,11 +15,9 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "OrderItem")
-public class OrderItem {
+public class OrderItem extends BaseEntity {
 
-    @Id
-    //@GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private int id;
+
 
     private int product_id;
     private int quantity;

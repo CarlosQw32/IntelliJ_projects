@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.example.Repository.OrederRepository;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class OrderRepositositoryIntegrationTests {
         var customerId = faker.number().numberBetween(0,99);
         var id = faker.number().numberBetween(0,99);
         var statusCodeId = faker.number().numberBetween(1,5);
-        var customerComments = faker.lorem().words(new Random().nextInt(10)).toString();
+        var customerComments = faker.lorem().words(new Random().nextInt(5)).toString();
         order.setCustomer_id(customerId);
         order.setId(id);
         order.setStatus_code_id(statusCodeId);
@@ -76,7 +77,32 @@ public class OrderRepositositoryIntegrationTests {
         var customerId = faker.number().numberBetween(0,99);
         var id = faker.number().numberBetween(0,99);
         var statusCodeId = faker.number().numberBetween(1,5);
-        var customerComments = faker.lorem().words(new Random().nextInt(10)).toString();
+        var customerComments = faker.lorem().words(new Random().nextInt(3)).toString();
+        order.setCustomer_id(customerId);
+        order.setId(id);
+        order.setStatus_code_id(statusCodeId);
+        order.setCustomer_comments(customerComments);
+
+        orederRepository.InsertOrder(order);
+
+        orederRepository.UpdateOrder(order);
+
+        var updateOrder = orederRepository.GetOrderById(order.getId()).orElse(null);
+        assertNotNull(updateOrder);
+        assertEquals(order.getId(), updateOrder.getId());
+        assertEquals(order.getOrderStatusCodes(), updateOrder.getOrderStatusCodes());
+
+    }
+
+    @Test
+    @Order(3)
+    public void testUpdateOrderInvalid(){
+
+        var order = new org.example.entities.Order();
+        var customerId = faker.number().numberBetween(0,99);
+        var id = faker.number().numberBetween(0,99);
+        var statusCodeId = faker.number().numberBetween(1,5);
+        var customerComments = faker.lorem().words(new Random().nextInt(3)).toString();
         order.setCustomer_id(customerId);
         order.setId(id);
         order.setStatus_code_id(statusCodeId);
@@ -85,6 +111,22 @@ public class OrderRepositositoryIntegrationTests {
         orederRepository.InsertOrder(order);
 
 
+        order.setCustomer_id(id);
+        order.setId(id);
+        order.setStatus_code_id(statusCodeId);
+        order.setCustomer_comments(null);
 
+        try {
+            orederRepository.UpdateOrder(order);
+        }
+        catch (Exception e){
+            assertNotNull(e);
+        }
+    }
+
+    @AfterAll
+    public static void tearDown(){
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }

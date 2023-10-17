@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 @Data
 @AllArgsConstructor
@@ -12,10 +13,9 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "OrderStatusCode")
-public class OrderStatusCode {
+public class OrderStatusCode extends BaseEntity {
 
-    @Id
-    private int id;
+
 
     private String description;
 

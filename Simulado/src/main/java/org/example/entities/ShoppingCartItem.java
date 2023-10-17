@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +13,8 @@ import lombok.ToString;
 @Entity
 @ToString
 @Table(name = "ShoppingCartItem")
-public class ShoppingCartItem {
+public class ShoppingCartItem extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String customer_id;
     private int product_id;
