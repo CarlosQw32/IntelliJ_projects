@@ -20,6 +20,7 @@ public class comprasPedido {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idPedido;
 
+
     private long idOrcamento;
     private long idRequisicao;
     private int quantidadePedido;
