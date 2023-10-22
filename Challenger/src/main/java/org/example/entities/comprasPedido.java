@@ -28,4 +28,5 @@ public class comprasPedido {
     private long cnpjFornecedor;
     private int idProduto;
     private long cnpjFornecedor1;
+
 }
