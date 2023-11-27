@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.entities.base.BaseEntity;
 
 import java.util.List;
 
@@ -14,11 +15,9 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Order_Pedido")
-public class Order {
+public class Order extends BaseEntity {
 
-    @Id
-    //@GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+
     private int customer_id;
     private int status_code_id;
     private String customer_comments;
@@ -26,7 +25,7 @@ public class Order {
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
-    @ManyToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderStatusCode> orderStatusCodes;
 
 }
