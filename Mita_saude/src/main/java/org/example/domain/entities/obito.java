@@ -1,8 +1,6 @@
 package org.example.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,12 @@ import java.util.Date;
 public class obito {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_obito;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name =  "cpf_crian")
+    private usuario_crianca crianca;
 
     private String causa_obito;
     private String local_obito;

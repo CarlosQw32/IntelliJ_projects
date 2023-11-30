@@ -1,8 +1,6 @@
 package org.example.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +15,17 @@ import lombok.ToString;
 public class consulta {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_consulta;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name =  "cpf_crian")
+    private usuario_crianca crianca;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "crm_medico")
+    private usuario_medico medico;
+
     private String mes_1_consulta;
     private String mes_2_consulta;
     private String mes_3_consulta;
