@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/Medicos")
+@RequestMapping("/medicos")
 @Tag(name = "Medicos",description = "CRUD dos Medicos.")
 public class MedicoController {
 
