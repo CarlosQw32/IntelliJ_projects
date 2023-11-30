@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.domain.DTOs.usuario_medico.DadosAtualizacaoMedico;
 import org.example.domain.DTOs.usuario_medico.DadosCadastroMedico;
 
 @Data
@@ -30,5 +31,23 @@ public class usuario_medico {
         this.senha_medico = dados.senha_medico();
         this.email_medico = dados.email_medico();
         this.telefone_medico = dados.telefone_medico();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados){
+        if(dados.crm_medico() != null){
+            this.crm_medico = dados.crm_medico();
+        }
+        if(dados.nome_medico() != null){
+            this.nome_medico = dados.nome_medico();
+        }
+        if(dados.senha_medico() != null){
+            this.senha_medico = dados.senha_medico();
+        }
+        if(dados.email_medico() != null){
+            this.email_medico = dados.email_medico();
+        }
+        if(dados.telefone_medico() != null){
+            this.telefone_medico = dados.telefone_medico();
+        }
     }
 }
