@@ -23,11 +23,11 @@ public class nascimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_nascimeto;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = usuario_crianca.class, fetch = FetchType.EAGER)
     @JoinColumn(name =  "cpf_crian")
     private List<usuario_crianca> crianca;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = usuario_medico.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "crm_medico")
     private List<usuario_medico> medico;
 
