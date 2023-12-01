@@ -1,4 +1,4 @@
-package org.example.entities;
+package org.example.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,14 +12,18 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "compra_produto")
-public class compraProduto {
+public class CompraProduto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idProduto;
 
-    private long cnpjFornecedor;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cnpj_fornecedor")
+    private CompraFornecedor compraFornecedor;
+
     private String descricaoProduto;
     private double valorProduto;
     private String aplicacaoProduto;
+
 }
