@@ -26,7 +26,7 @@ public class NascimentoController {
 
     @PostMapping
     @Transactional
-    @Operation(summary = "Cadastro de nascimentos", description = "Endpoint do cadastro de novas nascimento.")
+    @Operation(summary = "Cadastro de nascimentos", description = "Endpoint do cadastro de novos nascimento.")
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroNascimento dados, UriComponentsBuilder uriBuilder) {
         var nascimento_crianca = new nascimento(dados);
         repository.save(nascimento_crianca);
