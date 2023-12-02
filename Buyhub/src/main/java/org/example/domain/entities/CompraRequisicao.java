@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,17 +21,17 @@ public class CompraRequisicao {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idRequisicao;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CompraProduto.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produto")
-    private CompraProduto compraProduto;
+    private List<CompraProduto> compraProduto;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CompraFornecedor.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "cnpj_forncedor")
-    private CompraFornecedor compraFornecedor;
+    private List<CompraFornecedor> compraFornecedor;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CompraCliente.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "usuarioCliente")
-    private CompraCliente compraCliente;
+    private List<CompraCliente> compraCliente;
 
     private Date dataRequisicao;
     private int quantidadeRequisicao;
