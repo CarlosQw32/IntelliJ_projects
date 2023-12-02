@@ -24,5 +24,13 @@ public class ProdutoController {
     @Autowired
     private RepositoryOrcamento repository;
 
-
+    @PostMapping
+    @Transactional
+    @Operation(summary = "Cadastro de produto", description = "Endpoint do cadastro de novos produtos.")
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroProduto dados, UriComponentsBuilder uriBuilder) {
+        var produto = new CompraProduto(dados);
+        repository.save(produto);
+        var uri = uriBuilder.path("/nascimento/{nascimento}").buildAndExpand(produto.getIdProduto()).toUri();
+        return ResponseEntity.created(uri).body(new DadosListagemProduto(produto));
+    }
 }

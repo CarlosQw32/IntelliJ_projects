@@ -11,7 +11,7 @@ public record DadosAtualizacaoProduto(
         Long idProduto,
 
         @NotBlank
-        List<org.example.domain.entities.CompraFornecedor> CompraFornecedor,
+        List<CompraFornecedor> CompraFornecedor,
 
         String descricaoProduto,
         double valorProduto,
